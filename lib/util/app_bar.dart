@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 AppBar1() {
   return AppBar(
+    backgroundColor: Colors.teal[900],
     leading: IconButton(
       icon: Icon(Icons.person_outline),
       onPressed: () {

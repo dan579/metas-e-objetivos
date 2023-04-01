@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1/pages/initial_page.dart';
+import 'package:flutter1/app/app_module.dart';
+import 'package:flutter1/app/app_widget.dart';
+import 'package:flutter1/home/presenter/home_page.dart';
+import 'package:flutter1/pages/initial_page/presenter/initial_page.dart';
 import 'package:flutter1/util/app_bar.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  initializeDateFormatting("pt").then((_) => runApp(ModularApp(
+        module: AppModule(),
+        child: AppWidget(),
+      )));
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,41 +27,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Metas e objetivos 2023'),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar1(),
-      backgroundColor: Colors.blueGrey,
-      body: PageOne(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
